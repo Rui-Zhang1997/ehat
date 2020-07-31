@@ -3,14 +3,40 @@
     <head>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <script type="text/javascript">
+        let jsonData = null;
         function getJsonData(callback) {
             const jsonDataUri = "https://raw.githubusercontent.com/Rui-Zhang1997/ehat/master/tweets.json";
             const request = new XMLHttpRequest();
             request.open("GET", jsonDataUri, false);
-            request.onload = () => callback(request.responseText);
+            request.onload = () => callback(JSON.parse(request.responseText));
             request.send();
         }
-        getJsonData(() => console.log(JSON.parse(jsonDataUri)));
+
+        function makeSourceLinks(sources) {
+            return sources.map(src => `<a href="${src.link}">${src.source}</a>`).join('');
+        }
+
+        function createTweet(data) {
+            return ` 
+                <div class="article-container container">
+                    <div class="headline container"><p class="headline-text text">${data.headline}</p></div>
+                    <div class="author container"><p class="author-text text">${data.author}</p></div>
+                    <div class="summary container"><p class="summary-text text">${data.text}</p></div>
+                    <div class="sources container">
+                        ${makeSourceLinks(data.sources)}
+                    </div>
+                </div>
+            `
+        }
+
+        function loadSummaries() {
+            getJsonData(data => {
+                const elem = document.getElementById("summaries-container");
+                data.articles.forEach(datum => {
+                    elem.innerHTML += createTweet(datum);
+                });
+            });
+        }
         </script>
     </head>
     <body>
@@ -28,6 +54,10 @@
                     </span>
                 </div>
             </div>
+            <div class="summaries-container container" id="summaries-container"></div>
         </div>
     </body>
+    <script type="text/javascript">
+        loadSummaries();
+    </script>
 </html>
