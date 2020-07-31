@@ -1,0 +1,36 @@
+{
+    "articles": [
+        {
+            "date": "01-01-1990",
+            "headline": "A sample headline",
+            "author": "Jane Doe",
+            "text": "This is a sample summary of the article.",
+            "source": [
+                {
+                    "source": "nyt",
+                    "link": "https://www.nytimes.com/some-article"
+                },
+                {
+                    "source": "reuters",
+                    "link": "https://www.reuters.com/some-article"
+                }
+            ]
+        },
+        {
+            "date": "01-02-1990",
+            "headline": "Another headline",
+            "author": "Jane Doe",
+            "text": "This is another sample summary of the article.",
+            "source": [
+                {
+                    "source": "nbc",
+                    "link": "https://www.nbc.com/some-article2"
+                },
+                {
+                    "source": "cbs",
+                    "link": "https://www.cbs.com/some-article2"
+                }
+            ]
+        }
+    ]
+}
