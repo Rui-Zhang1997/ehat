@@ -1,1 +1,2 @@
-console.log(JSON.parse("https://github.com/Rui-Zhang1997/ehat/blob/master/tweets.json"));
+const jsonDataUri = "https://raw.githubusercontent.com/Rui-Zhang1997/ehat/master/main.js";
+console.log(JSON.parse(jsonDataUri));
