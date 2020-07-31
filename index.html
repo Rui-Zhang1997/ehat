@@ -3,8 +3,14 @@
     <head>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <script type="text/javascript">
+        function getJsonData(callback) {
             const jsonDataUri = "https://raw.githubusercontent.com/Rui-Zhang1997/ehat/master/tweets.json";
-            console.log(JSON.parse(jsonDataUri));
+            const request = new XMLHttpRequest();
+            request.open("GET", jsonDataUri, false);
+            request.onload = () => callback(request.responseText);
+            request.send();
+        }
+        getJsonData(() => console.log(JSON.parse(jsonDataUri)));
         </script>
     </head>
     <body>
